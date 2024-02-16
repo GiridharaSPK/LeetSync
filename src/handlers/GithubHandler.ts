@@ -310,6 +310,15 @@ export default class GithubHandler {
       return false;
     }
     //create a path for the files to be uploaded
+    if(question.questionFrontendId){
+      if(question.questionFrontendId < 100)  question.questionFrontendId = '00'+ question.questionFrontendId
+      if(question.questionFrontendId < 1000)  question.questionFrontendId = '0'+ question.questionFrontendId
+    }
+    if(question.questionId){
+      if(question.questionId < 100)  question.questionId = '00'+ question.questionId
+      if(question.questionId < 1000)  question.questionId = '0'+ question.questionId
+    }
+    
     let basePath = `${question.questionFrontendId ?? question.questionId ?? 'unknown'}-${question.titleSlug}`;
 
     if (this.github_leetsync_subdirectory) {
